@@ -1,7 +1,4 @@
-#! global
-
-from ast import Str
-
+from code.utils.read_text import *
 
 def my_func(a: str = "aaa", b: int="bbb") -> str:
     """
@@ -18,4 +15,4 @@ def my_func(a: str = "aaa", b: int="bbb") -> str:
     """
     return "A great notice"
 
-my_func()
+example_func(50, 50)
