@@ -1,25 +1,65 @@
-# Documentación para la aplicación
+# Apoyo para el desarrollo de infraestructura de software para la Secretaría de Enseñanza
 
-> Proyecto creado para el servicio social
+_Proyecto para el Instituto de Investigaciones Biomédicas_
 
+---
+## Tabla de contenidos
+1. [Comenzando](##Comenzando)
+    * [Pre-requisitos](###Pre-requisitos)
+2. [Estructura del proyecto](##Estructura)
+3. [Guía de Instalación](#Guía-de-Instalación)
+    * [Dependencias](#Instalación-de-dependencias)
+5. [Ejecutando el programa](##Ejecutando-el-programa)
 
-* A partir de un archivo de texto, extraer los nombres de los autores
+----
+## Comenzando
+* ...
+* ...
+* ...
 
+### Pre-requisitos
+* Python 3.6+
+* ...
+* ...
 
+## Estructura
+![Estructura del proyecto](./config/file-structure.png)
 
+Carpetas del proyecto:
+* __code/__ 
+    * _Contiene el código fuente del proyecto_
+    * __utils/__
+        * _Contiene los paquetes y librerias que utiliza el programa_
+* __config/__
+* __input/__
+* __output/__
 
-## Instalación de dependencias
-> En el archivo requirements.txt contiene el nombre y la versión de las dependencias necesarias para la ejecución de la aplicación
+## Guía de Instalación
+### Instalación
+* Descargar la carpeta del proyecto.
+* Mover el archivo
+* ...
 
-```python
-print("de")
-my_var = [1,3,4,5,6,7,8]
-my_var.append()
+```bash
+$ python3 setup.py
 
 ```
-## Instalación
+
+---
+### Instalación de dependencias
+> En el archivo requirements.txt contiene el nombre y la versión de las dependencias necesarias para la ejecución de la aplicación
 ```sh
 pip install -r requirements.txt
 
 ```
+## Ejecutando el programa
+Instrucciones para ejecutar el programa
 
+------
+
+```txt
+Barrios Ramírez Luis Fernando
+Licenciatura en Informática
+Facultad de Contaduría y Administración
+Universidad Nacional Autónoma de México
+```
