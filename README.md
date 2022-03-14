@@ -4,12 +4,12 @@ _Proyecto para el Instituto de Investigaciones Biomédicas_
 
 ---
 ## Tabla de contenidos
-1. [Comenzando](##Comenzando)
-    * [Pre-requisitos](###Pre-requisitos)
-2. [Estructura del proyecto](##Estructura)
-3. [Guía de Instalación](#Guía-de-Instalación)
-    * [Dependencias](#Instalación-de-dependencias)
-5. [Ejecutando el programa](##Ejecutando-el-programa)
+1. [Comenzando](#comenzando)
+    * [Pre-requisitos](#pre-requisitos)
+2. [Estructura del proyecto](#estructura)
+3. [Guía de Instalación](#guía-de-Instalación)
+    * [Dependencias](#instalación-de-dependencias)
+5. [Ejecutando el programa](#ejecutando-el-programa)
 
 ----
 ## Comenzando
