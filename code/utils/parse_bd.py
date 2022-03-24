@@ -1,6 +1,12 @@
 ''' Realiza el <<Parsing>> del archivo .txt
-    Datos aún no listos para realizar operaciones
+    Separa los datos del archivo .txt en listas individuales
+    con información de cada una de las públiciónes.
+
+    (Datos aún no listos para realizar operaciones)
 '''
+
+from pprint import pprint
+
 
 def parse_txt_to_lists():
     ''' Genera una lista de listas usando la información del archivo .txt de la BD
@@ -31,17 +37,8 @@ def parse_txt_to_lists():
 
 
 bulk = parse_txt_to_lists()
+pprint(bulk)
 print(bulk.__len__())
-#print(f"HEEEYYY  -> {count_n}")
-#print(bulk_pub_conbo)
-
-#        if pub[:4] == 'PMID':
-#            temp_pub_single.append(pub)
-    #raw_publication_bd = "".join(raw_publication_bd)
-
-
-#with open('./prueba.txt', 'w') as prueba:
-#    prueba.writelines(bulk_pub_conbo)
 
 
 
