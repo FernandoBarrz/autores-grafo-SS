@@ -36,6 +36,7 @@ def parse_txt_to_lists():
     return bulk_pub_conbo
 
 
+
 bulk = parse_txt_to_lists()
 pprint(bulk)
 print(bulk.__len__())

@@ -33,3 +33,4 @@ with open('../../input/nombre-investigadores.txt', 'r') as nombres_inv:
         temp_nombre = temp_nombre.title()
 
         pprint(temp_nombre)
+        
