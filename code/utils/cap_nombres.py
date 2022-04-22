@@ -31,6 +31,8 @@ with open('../../input/nombre-investigadores.txt', 'r') as nombres_inv:
         temp_nombre = lista_nombre[1:-1]
         temp_nombre = "-".join(temp_nombre)
         temp_nombre = temp_nombre.title()
+        lista_nombres_capitalized.append(temp_nombre)
 
-        pprint(temp_nombre)
+    print(lista_nombres_capitalized)    
+    print(len(lista_nombres_capitalized))
         
