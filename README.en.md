@@ -1,8 +1,5 @@
 # Apoyo para el desarrollo de infraestructura de software para la Secretaría de Enseñanza
 
-[![en](https://img.shields.io/badge/lang-en-red.svg)](https://github.com/jonatasemidio/multilanguage-readme-pattern/blob/master/README.md)
-
-
 _Proyecto para el Instituto de Investigaciones Biomédicas_
 
 ---
