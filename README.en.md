@@ -1,65 +1,89 @@
-# Apoyo para el desarrollo de infraestructura de software para la Secretaría de Enseñanza
+# Support for the development of software infrastructure for the Ministry of Education
 
-_Proyecto para el Instituto de Investigaciones Biomédicas_
+[![en](https://img.shields.io/badge/lang-es-green.svg)](https://github.com/FernandoBarrz/autores-grafo-SS/)         Spanish 👈
+## About the project
+> A command line app that automates the process of registering collaboration between authors' research work in the form of a graph (data structure). This app uses some input files containing researchers' names from the institute and the bibliographic information gathered from published materials and then it process it to generate a undirected weighted graph representing those collaborations.
+
+__Project for the [Biomedical Research Institute](https://www.biomedicas.unam.mx/)__
+
+![Undirected Weighted Graph](./config/undirected-graph.png)
 
 ---
-## Tabla de contenidos
-1. [Comenzando](#comenzando)
-    * [Pre-requisitos](#pre-requisitos)
-2. [Estructura del proyecto](#estructura)
-3. [Guía de Instalación](#guía-de-Instalación)
-    * [Dependencias](#instalación-de-dependencias)
-5. [Ejecutando el programa](#ejecutando-el-programa)
+### Built With
+* Pytohn 3.6+
+----
+
+## Table of contents
+Contents
+1. [Get Started](#getting-started)
+    * [Prerequisites](#prerequisites)
+2. [Project Structure](#project-structure)
+3. [Installation](#installation)
+    * Optional Dependencies
+5. [Usage](#usage)
+6. [Contact](#contact)
 
 ----
-## Comenzando
-* Descargar el archivo
+# Getting Started
+
+
+### Prerequisites
+* Python 3.6+ Installed
 * ...
 * ...
 
-### Pre-requisitos
-* Python 3.6+
-* ...
-* ...
+## Project Structure 
+![Project Structure](./config/project-structure.png)
 
-## Estructura
-![Estructura del proyecto](./config/file-structure.png)
-
-Carpetas del proyecto:
+### Project directories and files:
 * __code/__ 
-    * _Contiene el código fuente del proyecto_
+    * _Contains the main source code_
     * __utils/__
-        * _Contiene los paquetes y librerias que utiliza el programa_
+        * _Contains the packages and modules used by the program_
 * __config/__
 * __input/__
+    * _Contains the .txt files with the authors' names and the publication's data._
 * __output/__
+    * _Contains a .txt file auto generated from the data. Representing the collaborations. Optionally a PDF also can be generated_
+----
+## Installation
 
-## Guía de Instalación
-### Instalación
-* Descargar la carpeta del proyecto.
-* Mover el archivo
-* ...
-
-```bash
-$ python3 setup.py
-
-```
+1. Clone the repo
+    ```sh
+    git clone https://github.com/FernandoBarrz/autores-grafo-SS.git
+    ```
+2. Override the .txt file in the /input directory if necessary.
+3. Move to the project root directory.
 
 ---
-### Instalación de dependencias
+### Dependencies (_Optional_)
 > En el archivo requirements.txt contiene el nombre y la versión de las dependencias necesarias para la ejecución de la aplicación
 ```sh
 pip install -r requirements.txt
-
 ```
-## Ejecutando el programa
-Instrucciones para ejecutar el programa
+
+## Usage
+1.  To use the command line app on your computer, execute the main_en.py file. 
+
+    On a Linux/UNIX based OS:
+    ```sh
+    python3 main_en.py
+    ```
+    On Windows OS
+    ```sh
+    python main_en.py
+    ```
+
+---
+
+## Contact
+
+Fernando Barrios - [/in/fernando-barrios/](https://www.linkedin.com/in/fernando-barrios/) - fernando.barrios.dev@gmail.com
+
+Project Link: [https://github.com/FernandoBarrz/autores-grafo-SS](https://github.com/FernandoBarrz/autores-grafo-SS)
 
 ------
 
-```txt
-Barrios Ramírez Luis Fernando
-Licenciatura en Informática
-Facultad de Contaduría y Administración
-Universidad Nacional Autónoma de México
-```
+## License
+
+Distributed under the MIT License. 
