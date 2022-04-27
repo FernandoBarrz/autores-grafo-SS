@@ -35,7 +35,7 @@ def parse_txt_to_lists():
                     temp_pub_single.append(pub)
         return bulk_pub_conbo
     except:
-        print("Error while reading file")
+        print("Error while reading file: charmap errror")
         
     
 
@@ -44,7 +44,7 @@ def parse_txt_to_lists():
 def print_txt_to_lists():
     bulk = parse_txt_to_lists()
     pprint(bulk)
-    print('Total length: ', bulk.__len__(), end='\n')
+    print('Total length: ', len(bulk), end='\n')
 
 
 if __name__ == '__main__':
