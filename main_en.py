@@ -39,7 +39,7 @@ if __name__ == '__main__':
         elif option == 2:
             bulk = parse_txt_to_lists()
             pprint(bulk)
-            print('Total length: ', end='\n')
+            print('Total length: ',bulk, end='\n')
         elif option == 3:
             show_graph_cli()
         elif option == 4:
