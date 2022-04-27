@@ -1,6 +1,6 @@
 import os
 from code.utils.get_names import mostrar_nombre_investigadores
-from code.utils.parse_bd import print_txt_to_lists
+from code.utils.parse_bd import print_txt_to_lists, parse_txt_to_lists
 from code.utils.generate_graph import show_graph_cli
 from code.utils.generate_statistics import show_statistics_cli
 
