@@ -22,18 +22,21 @@ def parse_txt_to_lists():
         Lista compuesta por listas de públicaciones
 
     '''
-
-    with open('./input/PubMed_Biomedicas_desde_2014.txt', 'r') as publicaciones_bd:
-        raw_publicaciones_bd = list(publicaciones_bd.readlines())
-        bulk_pub_conbo = []
-        temp_pub_single = []
-        for pub in raw_publicaciones_bd:
-            if pub[:2] == 'SO':
-                bulk_pub_conbo.append(temp_pub_single)
-                temp_pub_single = []
-            elif pub != '\n':
-                temp_pub_single.append(pub)
-    return bulk_pub_conbo
+    try:
+        with open('./input/PubMed_Biomedicas_desde_2014.txt', 'r') as publicaciones_bd:
+            raw_publicaciones_bd = list(publicaciones_bd.readlines())
+            bulk_pub_conbo = []
+            temp_pub_single = []
+            for pub in raw_publicaciones_bd:
+                if pub[:2] == 'SO':
+                    bulk_pub_conbo.append(temp_pub_single)
+                    temp_pub_single = []
+                elif pub != '\n':
+                    temp_pub_single.append(pub)
+        return bulk_pub_conbo
+    except:
+        print("Error while reading file")
+        
     
 
 
