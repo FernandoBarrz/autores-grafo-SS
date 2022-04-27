@@ -1,5 +1,9 @@
-def show_graph_cli():
+
+
+
+def show_statistics_cli():
     pass
+
 
 
 if __name__ == '__main__':

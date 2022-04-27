@@ -23,7 +23,7 @@ def parse_txt_to_lists():
 
     '''
 
-    with open('../../input/PubMed_Biomedicas_desde_2014.txt', 'r') as publicaciones_bd:
+    with open('./input/PubMed_Biomedicas_desde_2014.txt', 'r') as publicaciones_bd:
         raw_publicaciones_bd = list(publicaciones_bd.readlines())
         bulk_pub_conbo = []
         temp_pub_single = []
@@ -34,12 +34,15 @@ def parse_txt_to_lists():
             elif pub != '\n':
                 temp_pub_single.append(pub)
     return bulk_pub_conbo
+    
 
 
 
-bulk = parse_txt_to_lists()
-pprint(bulk)
-print(bulk.__len__())
+def print_txt_to_lists():
+    bulk = parse_txt_to_lists()
+    pprint(bulk)
+    print('Total length: ', bulk.__len__(), end='\n')
 
 
-
+if __name__ == '__main__':
+    print("Not main app, run: python3 main_en.py")

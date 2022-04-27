@@ -18,7 +18,7 @@ def mostrar_nombre_investigadores():
 
 
 if __name__ == '__main__':
-    print("Not main app, run: python3 main.py")
+    print("Not main app, run: python3 main_en.py")
 
 
 

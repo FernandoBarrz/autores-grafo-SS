@@ -7,7 +7,7 @@
 from pprint import pprint
 
 
-with open('../../input/PubMed_Biomedicas_desde_2014.txt', 'r') as publicaciones_bd:
+with open('./input/PubMed_Biomedicas_desde_2014.txt', 'r') as publicaciones_bd:
     raw_publicaciones_bd = list(publicaciones_bd.readlines())
     bulk_pub_conbo = []
     temp_pub_single = []
@@ -19,9 +19,13 @@ with open('../../input/PubMed_Biomedicas_desde_2014.txt', 'r') as publicaciones_
             temp_pub_single.append(pub)
 
 # TODO agregar nested for
-autores = []
-for part in bulk_pub_conbo[0]:
-    #print(type(part))
-    if part[:2] == 'AU' or part[:3] == 'FAU':
-        autores.append(part)
-print(autores)
+# autores = []
+# for part in bulk_pub_conbo[0]:
+#     #print(type(part))
+#     if part[:2] == 'AU' or part[:3] == 'FAU':
+#         autores.append(part)
+# print(autores)
+
+
+if __name__ == '__main__':
+    print("Not main app, run: python3 main_en.py")
