@@ -1,16 +1,9 @@
 import os
 from code.utils.get_names import mostrar_nombre_investigadores
+from code.utils.parse_bd import print_txt_to_lists
+from code.utils.generate_graph import show_graph_cli
+from code.utils.generate_statistics import show_statistics_cli
 
-
-def mostrar_base_datos():
-    print('base de datos dasdasd')
-    print('fewfwe\n' * 3)
-def mostrar_documentacion():
-    print('documentacion')
-    print('fewfwe\n' * 3)
-def mostrar_grafo():
-    print('grafooo')
-    print('fewfwe\n' * 3)
 
 
 
@@ -19,7 +12,8 @@ menu_options = {
     1: 'Ver nombre de los investigadores',
     2: 'Mostrar base de datos', 
     3: 'Mostrar grafó',
-    4: 'Salir del programa'
+    4: 'Mostrar estadísticas',
+    5: 'Salir del programa'
 }
 
 def mostrar_menu():
@@ -44,20 +38,20 @@ if __name__ == '__main__':
 
         elif opcion == 2:
             #os.system('clear || cls')
-            mostrar_base_datos()
+            print_txt_to_lists()
 
         elif opcion == 3:
             #os.system('clear || cls')
-            mostrar_grafo()
-
-        elif opcion == 4 or opcion == 'q':
+            show_graph_cli()
+        elif opcion == 4:
+            show_statistics_cli()
+        elif opcion == 5 or opcion == 'q':
             #os.system('clear || cls')
             print("Saliendo del programa...")
             break
         else:
             print('Error al seleccionar opción.')
             os.system('clear || cls')
-            continue
 
 
 

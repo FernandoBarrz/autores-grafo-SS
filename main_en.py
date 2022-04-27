@@ -1,20 +1,17 @@
 import os
 from code.utils.get_names import mostrar_nombre_investigadores
+from code.utils.parse_bd import print_txt_to_lists
+from code.utils.generate_graph import show_graph_cli
+from code.utils.generate_statistics import show_statistics_cli
 
-
-def mostrar_base_datos():
-    print('Show data record')
-def mostrar_documentacion():
-    print('Show documentation')
-def mostrar_grafo():
-    print('Show graph')
 
 
 menu_options = {
     1: 'Show researchers\'s names',
     2: 'Show data record', 
     3: 'Show graph',
-    4: 'Exit'
+    4: 'Show statistics',
+    5: 'Exit'
 }
 
 def print_menu():
@@ -37,13 +34,14 @@ if __name__ == '__main__':
             print('Wrong input. Please enter a number ...')
         
         if option == 1:
-            mostrar_base_datos()
+            mostrar_nombre_investigadores()
         elif option == 2:
-            mostrar_base_datos()
+            print_txt_to_lists()
         elif option == 3:
-            mostrar_grafo()
+            show_graph_cli()
         elif option == 4:
+            show_statistics_cli()
+        elif option == 5:
             break
         else:
-            print('Invalid option. Please enter a number between 1 and 4.')
-    
+            print('Invalid option. Please enter a number between 1 and 5.')
