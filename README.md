@@ -26,7 +26,7 @@ _Proyecto para el Instituto de Investigaciones Biomédicas_
 * ...
 
 ## Estructura
-![Estructura del proyecto](./config/file-structure.png)
+![Estructura del proyecto](./config/project-structure.png)
 
 Carpetas del proyecto:
 * __code/__ 
@@ -39,12 +39,15 @@ Carpetas del proyecto:
 
 ## Guía de Instalación
 ### Instalación
-* Descargar la carpeta del proyecto.
-* Mover el archivo
+
+1. Clonar el repositorio
+    ```sh
+    git clone https://github.com/FernandoBarrz/autores-grafo-SS.git
+    ```
+* Cambiar de directorio al la carpeta principal
 * ...
 
 ```bash
-$ python3 setup.py
 
 ```
 
@@ -56,7 +59,18 @@ pip install -r requirements.txt
 
 ```
 ## Ejecutando el programa
-Instrucciones para ejecutar el programa
+
+1.  To use the command line app on your computer, execute the main_en.py file. 
+
+    On a Linux/UNIX based OS:
+    ```sh
+    python3 main_en.py
+    ```
+    On Windows OS
+    ```sh
+    py main_en.py
+    ```
+
 
 ------
 

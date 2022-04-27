@@ -71,7 +71,7 @@ pip install -r requirements.txt
     ```
     On Windows OS
     ```sh
-    python main_en.py
+    py main_en.py
     ```
 
 ---
