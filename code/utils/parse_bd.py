@@ -37,14 +37,6 @@ def parse_txt_to_lists():
     except:
         print("Error while reading file: charmap errror")
         
-    
-
-
-
-def print_txt_to_lists():
-    bulk = parse_txt_to_lists()
-    pprint(bulk)
-    print('Total length: ', len(bulk), end='\n')
 
 
 if __name__ == '__main__':

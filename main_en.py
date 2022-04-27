@@ -1,6 +1,7 @@
 import os
+from pprint import pprint
 from code.utils.get_names import mostrar_nombre_investigadores
-from code.utils.parse_bd import print_txt_to_lists, parse_txt_to_lists
+from code.utils.parse_bd import parse_txt_to_lists
 from code.utils.generate_graph import show_graph_cli
 from code.utils.generate_statistics import show_statistics_cli
 
@@ -36,7 +37,9 @@ if __name__ == '__main__':
         if option == 1:
             mostrar_nombre_investigadores()
         elif option == 2:
-            print_txt_to_lists()
+            bulk = parse_txt_to_lists()
+            pprint(bulk)
+            print('Total length: ', len(bulk), end='\n')
         elif option == 3:
             show_graph_cli()
         elif option == 4:
