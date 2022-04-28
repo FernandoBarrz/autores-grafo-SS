@@ -36,7 +36,7 @@ def parse_txt_to_lists():
         return bulk_pub_conbo
     except:
         print("Error while reading file: charmap errror")
-        
+        return "Error - open /input/PubMed_Biomedicas"
 
 
 if __name__ == '__main__':
