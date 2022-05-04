@@ -29,9 +29,32 @@ Contents
 
 ### Prerequisites
 * Python 3.6+ Installed
-* ...
-* ...
+* PIP 3 installed
+    * Installing pip for Python 3
+        * To install pip for Python 3 on Ubuntu 20.04 run the following commands as root or sudo user in your terminal:
+            ```bash
+                sudo apt update
+                sudo apt install python3-pip
+            ```
+    * Or, use a virtual environment with __venv__
+        ```bash
+            python3 -m venv <project-name>
+        ```
+        ```bash
+            source <project-name>/bin/activate
+            python3 -m pip install --upgrade pip
+        ```
+* Graphviz (Python library to work with graphs) source code
+    * Linux Distros:
+        ```bash 
+            sudo apt-get install graphviz
+        ```
+    * On MacOS X
+        ```bash
+            sudo apt-get install graphviz
+        ```
 
+<>
 ## Project Structure 
 ![Project Structure](./config/project-structure.png)
 
@@ -49,16 +72,21 @@ Contents
 ## Installation
 
 1. Clone the repo
-    ```sh
+    ```bash
     git clone https://github.com/FernandoBarrz/autores-grafo-SS.git
     ```
 2. Override the .txt file in the /input directory if necessary.
 3. Move to the project root directory.
+4. To install the dependencies:
+    ```bash
+        pip install -r requiremens.txt
+    ```
+
 
 ---
 ### Dependencies (_Optional_)
-> En el archivo requirements.txt contiene el nombre y la versión de las dependencias necesarias para la ejecución de la aplicación
-```sh
+> The requirements.txt file contains the required dependencies' version and name to run the app.
+```bash
 pip install -r requirements.txt
 ```
 
