@@ -5,7 +5,7 @@ __pycache__
 
 *graph-test
 /venv-graph
-/output/*
+*.png
 
 
 /DS_Store
