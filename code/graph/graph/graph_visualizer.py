@@ -1,4 +1,4 @@
-from .graph import Graph
+from graph import Graph
 from PIL import Image
 import pydot
 import tempfile
@@ -36,6 +36,11 @@ def display_graph(graph, graph_name=None):
     pydot_graph.write_png(temp.name)
 
     image = Image.open(temp.name)
+    image.show()
+    image = image.save('./output/image.png')
     temp.close()
 
-    image.show()
+
+
+if __name__ == "__main__":
+    print("Failed to run script")

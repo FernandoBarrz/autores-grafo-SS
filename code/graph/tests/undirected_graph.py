@@ -1,4 +1,4 @@
-from graph import Graph
+from graph import *
 from graph import display_graph
 import unittest
 

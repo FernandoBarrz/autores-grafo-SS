@@ -1,6 +1,12 @@
 __pycache__
 .mypy_cache
 
+/graph-test
+
+*graph-test
+
+
+
 /DS_Store
 ./DS_Store
 *DS_Store
