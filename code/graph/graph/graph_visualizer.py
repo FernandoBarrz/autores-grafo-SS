@@ -1,4 +1,4 @@
-from graph import Graph
+from code.graph.graph import Graph
 from PIL import Image
 import pydot
 import tempfile
