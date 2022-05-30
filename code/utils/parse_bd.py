@@ -16,7 +16,7 @@ def parse_txt_to_lists():
         --------------
         No
 
-        Return:
+        Return: [[], [], [], ...]
         --------------
         Tipo: List
         Lista compuesta por listas de públicaciones
@@ -33,7 +33,7 @@ def parse_txt_to_lists():
                     temp_pub_single = []
                 elif pub != '\n':
                     temp_pub_single.append(pub)
-        return bulk_pub_conbo
+            return bulk_pub_conbo
     except:
         print("Error while reading file: charmap errror")
         return "Error - open /input/PubMed_Biomedicas"

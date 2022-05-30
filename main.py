@@ -6,6 +6,10 @@ from code.graph.show_graph_cli import show_graph_console
 # from code.graph.show_graph_visually import show_graph_image
 from code.utils.generate_statistics import show_statistics_cli
 
+## TODO TEST
+from code.utils.generate_collabs_lists import generate_list_of_authors_from_pub
+## TODO TEST
+
 
 menu_options = {
     1: 'Ver nombre de los investigadores',
@@ -44,14 +48,14 @@ if __name__ == '__main__':
             show_graph_console()
 
         elif opcion == 4:
-            pass
-            #show_graph_image()
             
+            #show_graph_image()
+            generate_list_of_authors_from_pub()
         elif opcion == 5:
             show_statistics_cli()
 
         elif opcion == 6 or opcion == 'q':
-            print("Saliendo del programa...")
+            pprint("Saliendo del programa...")
             break
 
         else:
