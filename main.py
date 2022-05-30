@@ -3,7 +3,7 @@ from pprint import pprint
 from code.utils.get_names import mostrar_nombre_investigadores
 from code.utils.parse_bd import parse_txt_to_lists
 from code.graph.show_graph_cli import show_graph_console
-from code.graph.show_graph_visually import show_graph_image
+# from code.graph.show_graph_visually import show_graph_image
 from code.utils.generate_statistics import show_statistics_cli
 
 
@@ -44,7 +44,8 @@ if __name__ == '__main__':
             show_graph_console()
 
         elif opcion == 4:
-            show_graph_image()
+            pass
+            #show_graph_image()
             
         elif opcion == 5:
             show_statistics_cli()

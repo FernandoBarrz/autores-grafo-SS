@@ -1,28 +1,37 @@
-from pprint import pprint
-#from graph import *
 
-from code.graph.graph import Graph
+from random import randint
+
+from code.graph.graph.graph import Graph
+
+from code.utils.cap_nombres import cap_names_raw
 
 def create_graph():
+    """
+    Llama a la clase Graph para asignarle valores
+    """
+    
     graph = Graph(directed=False) # Graph(directed=false) for undirected graph
+    
 
-    graph.add_vertex("Pablo")
-    graph.add_vertex("Juan")
-    graph.add_vertex("Pedro")
-    graph.add_vertex("Federica")
-    graph.add_vertex("unai")
+    indexed_names = cap_names_raw()[:20]
 
+    def generate_random_num():
+        length_indexed_names = len(indexed_names) -1
+        return randint(0, length_indexed_names)
 
-    graph.add_edge("Pablo", "Juan", 1)
-    graph.add_edge("Pedro", "Pablo", 12)
-    graph.add_edge("Federica", "unai", 2)
-    graph.add_edge("unai", "Pablo", 2)
-    graph.add_edge("Juan", "Pedro", 4)
-    graph.add_edge("unai", "Pablo", 11)
+    def populate_graph():
+        for name in indexed_names:
+            graph.add_vertex(name)
+        return graph
 
-    return graph
+    def make_graph():
+        graph = populate_graph()
+        for _ in range(len(indexed_names)):
+            graph.add_edge(indexed_names[generate_random_num()], indexed_names[generate_random_num()], generate_random_num())
+        return graph
+    return make_graph()
 
 
 if __name__ == '__main__':
-    
+    print(str(create_graph()))
     print("Not main app, run: python3 main_en.py")

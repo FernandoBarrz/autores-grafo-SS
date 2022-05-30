@@ -3,7 +3,7 @@ from pprint import pprint
 from code.utils.get_names import mostrar_nombre_investigadores
 from code.utils.parse_bd import parse_txt_to_lists
 from code.graph.show_graph_cli import show_graph_console
-from code.graph.show_graph_visually import show_graph_image
+#from code.graph.show_graph_visually import show_graph_image
 from code.utils.generate_statistics import show_statistics_cli
 
 
@@ -23,10 +23,6 @@ def print_menu():
     for key in menu_options.keys():
         print(key, '--', menu_options[key])
 
-
-
-
-    
 if __name__ == '__main__':
     while(True):
         print_menu()
@@ -50,4 +46,4 @@ if __name__ == '__main__':
         elif option == 6:
             break
         else:
-            print('Invalid option. Please enter a number between 1 and 5.')
+            print('Invalid option. Please enter a number between 1 and 6.')

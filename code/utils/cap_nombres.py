@@ -33,7 +33,7 @@ def cap_names_raw():
             temp_nombre = temp_nombre.title()
             lista_nombres_capitalized.append(temp_nombre)
 
-        print(lista_nombres_capitalized)    
-        print(len(lista_nombres_capitalized))
+    return lista_nombres_capitalized
+        
 if __name__ == '__main__':
     print("Not main app, run: python3 main_en.py")
