@@ -15,7 +15,7 @@ def generate_list_of_authors_from_pub():
     return: [str, str, str, ...]
     """
     raw_data = parse_txt_to_lists()
- 
+    # TODO compress data to only a IIBO authors
     collabs_au_form_pub = []
     for chunk_pub_data in raw_data:
         temp_list = []
@@ -24,23 +24,18 @@ def generate_list_of_authors_from_pub():
  
             if autores_index and len(list_of_data[autores_index:]) > 3:
                 temp_list.append(list_of_data[autores_index + 5:-1])
+       
       
         collabs_au_form_pub.append(temp_list)
+    return collabs_au_form_pub
 
-    pprint(collabs_au_form_pub)
-
-
-
-
-# TODO agregar nested for
-# autores = []
-# for part in bulk_pub_conbo[0]:
-#     #print(type(part))
-#     if part[:2] == 'AU' or part[:3] == 'FAU':
-#         autores.append(part)
-# print(autores)
+    #with open("./input/listas_de_colaboraciones.txt", "r+") as collabs_list:
+    #     collabs_list.writelines(str(collabs_au_form_pub))
+         # for collab in collabs_au_form_pub:
+    #     #     collabs_list.write(collab)
+    #     #     #collabs_list.writelines(list(collabs_au_form_pub))
 
 
 if __name__ == '__main__':
-    print(generate_normalized_author_names_from_pub())
+    
     print("Not main app, run: python3 main_en.py")

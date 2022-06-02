@@ -1,26 +1,47 @@
 from pprint import pprint
 
 
-def normalize(s):
+def normalize(string):
     ''' Reemplaza las letras con tildes de una cadena de texto
         Args: 
             El caracter a reemplzar
         Return:
             Catacter sin tilde
     '''
-    replacements = (
-        ('á', 'a'),
-        ('é', 'e'),
-        ('í', 'i'),
-        ('ó', 'o'),
-        ('u', 'u')
-    )
-    for a, b in  replacements:
-        s = s.replace(a, b)
-    return s
+
+    table = {  
+            'á': 'a',
+            'é': 'e',
+            'í': 'i',
+            'ó': 'o',
+            'ú': 'u'
+    }
+    
+    string = string.lower()
+
+    string_T = string.maketrans(table)
+    
+    return string.translate(string_T).lower().replace("-", "").replace(",", "")
 
 
-# TODO quitar el \n de las listas
+
+
+#nombre_cumpleto = ["memo", "leticia", "rocha", "zavaleta", 'paco']
+
+#nombre_colab =['rocha', 'zavaleta', 'leticia']
+
+
+#for nombre in nombre_cumpleto:
+#  if nombre in nombre_colab:
+#    print(f'{nombre} esta en bi')
+#  else:
+#    print(f'{nombre} NOOO esta en bi')
+
+
+
+
+# TODO refactor to remove trailing \n
+
 def cap_names_raw():
     with open('./input/nombre-investigadores.txt', 'r') as nombres_inv:
         lista_nombres_raw = list(nombres_inv.readlines())
@@ -36,4 +57,5 @@ def cap_names_raw():
     return lista_nombres_capitalized
         
 if __name__ == '__main__':
+    print(cap_names_raw())
     print("Not main app, run: python3 main_en.py")

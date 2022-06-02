@@ -23,5 +23,6 @@ def indexer_dic():
 
 
 if __name__ == '__main__':
+    print(indexer_dic())
     print("Not main app, run: python3 main_en.py")
         

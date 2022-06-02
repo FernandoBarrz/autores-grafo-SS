@@ -8,6 +8,7 @@ from code.utils.generate_statistics import show_statistics_cli
 
 ## TODO TEST
 from code.utils.generate_collabs_lists import generate_list_of_authors_from_pub
+from code.utils.generate_collabs_num import generate_collabs_num
 ## TODO TEST
 
 
@@ -15,7 +16,7 @@ menu_options = {
     1: 'Ver nombre de los investigadores',
     2: 'Mostrar base de datos', 
     3: 'Mostrar grafó (Interfaz de línea de comandos)',
-    4: 'Mostrar grafó (Visualmente al abrir la imagen)',
+    4: 'Generar lista de colaboraciones en /input',
     5: 'Mostrar estadísticas',
     6: 'Salir del programa'
 }
@@ -52,7 +53,8 @@ if __name__ == '__main__':
             #show_graph_image()
             generate_list_of_authors_from_pub()
         elif opcion == 5:
-            show_statistics_cli()
+            print(generate_collabs_num())
+            #show_statistics_cli()
 
         elif opcion == 6 or opcion == 'q':
             pprint("Saliendo del programa...")
