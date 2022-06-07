@@ -3,7 +3,7 @@ from random import randint
 
 from code.graph.graph.graph import Graph
 
-from code.utils.cap_nombres import cap_names_raw
+from code.utils.normalize_names import cap_names_raw
 
 def create_graph():
     """

@@ -53,7 +53,7 @@ if __name__ == '__main__':
             #show_graph_image()
             generate_list_of_authors_from_pub()
         elif opcion == 5:
-            print(generate_collabs_num())
+            generate_collabs_num()
             #show_statistics_cli()
 
         elif opcion == 6 or opcion == 'q':
