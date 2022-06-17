@@ -73,8 +73,14 @@ def create_graph():
                     print("El registro no esta en las listas de nombres")
                 if  temp_rel in rel or temp_rel_2 in rel:
                     print("DENTRO IF 2")
+                    #TODO: Remueve el edge con los datos actualez y despues lo vuelve a crear
+                    try:
+
+                        graph.remove_edge(indexed_names[temp_one_index], indexed_names[temp_two_index], rel[temp_rel])
+                    except Exception:
+                        graph.remove_edge(indexed_names[temp_two_index], indexed_names[temp_one_index], rel[temp_rel_2])
                     rel[temp_rel] += 1
-                    #graph.add_edge(indexed_names[temp_one_index], indexed_names[temp_two_index], rel[temp_rel])
+                    graph.add_edge(indexed_names[temp_one_index], indexed_names[temp_two_index], rel[temp_rel])
                 else:
                     # Actualmente, solo genera una relacion unidireccional de maximo 1, en ocaciones deben de ser 2 o más
                     # TODO: Ocurre que se genera solo una relacion, pero despues no de puede actualizar
