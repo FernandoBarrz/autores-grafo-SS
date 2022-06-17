@@ -11,9 +11,10 @@ from code.utils.generate_collabs_lists import generate_list_of_authors_from_pub
 from code.utils.generate_collabs_num import generate_collabs_num
 ## TODO TEST
 #from code.graph.generate_graph import prueba
-#from code.graph.generate_graph import generate_graph_data
+from code.graph.generate_graph import generate_graph_data
 from code.graph.generate_graph import create_graph
 from code.graph.show_graph_cli import show_graph_console
+from code.graph.show_graph_visually import show_graph_image
 
 menu_options = {
     1: 'Ver nombre de los investigadores',
@@ -53,15 +54,11 @@ if __name__ == '__main__':
 
         elif opcion == 4:
             
-            #show_graph_image()
-            generate_list_of_authors_from_pub()
+            show_graph_console()
+
         elif opcion == 5:
-            #show_graph_console()
-            print(str(create_graph()))
-            #print(generate_collabs_num())
-            #print(prueba())
-            #print(generate_graph_data())
-            #show_statistics_cli()
+            #print(str(create_graph()))
+            show_graph_image()
 
         elif opcion == 6 or opcion == 'q':
             pprint("Saliendo del programa...")

@@ -3,9 +3,6 @@ Utiliza las listas de colaboraciones y el archivo de la lista de nombres de IIBO
 
 """
 
-from enum import auto
-from itertools import count
-from posixpath import split
 from code.utils.generate_collabs_lists import generate_list_of_authors_from_pub
 from code.utils.normalize_names import cap_names_raw
 from code.utils.normalize_names import normalize
@@ -13,7 +10,7 @@ from code.utils.normalize_names import normalize
 
 def generate_collabs_num(nombre_from_pub) -> list:
     
-    # TODO datos de prueba agregar for superior
+    
     
     
     autores_x_colab = []
@@ -35,10 +32,11 @@ def generate_collabs_num(nombre_from_pub) -> list:
                 count_collabs += 1
                 autores_x_colab.append(autor_name)
                 break
+            
     
     return autores_x_colab
     
-    print(count_collabs)
+    
     
     
 
