@@ -68,14 +68,21 @@ def create_graph():
                     temp_two_index = indexed_names.index(registro_de_colaboracion[1])
                     print(f"Data 2:  { temp_two_index}")
                     temp_rel = f"{indexed_names[temp_one_index]} - {indexed_names[temp_two_index]}"
+                    temp_rel_2 = f"{indexed_names[temp_two_index]} - {indexed_names[temp_one_index]}"
                 except:
                     print("El registro no esta en las listas de nombres")
-                if  temp_rel in rel:
+                if  temp_rel in rel or temp_rel_2 in rel:
                     print("DENTRO IF 2")
                     rel[temp_rel] += 1
+                    #graph.add_edge(indexed_names[temp_one_index], indexed_names[temp_two_index], rel[temp_rel])
                 else:
+                    # Actualmente, solo genera una relacion unidireccional de maximo 1, en ocaciones deben de ser 2 o más
+                    # TODO: Ocurre que se genera solo una relacion, pero despues no de puede actualizar
+                    # TODO: Se debe intenar generar el número de colaboraciones antes de enviarlo al .add_edge()
                     rel[temp_rel] = 1
+                    rel[temp_rel_2] = 1
                     graph.add_edge(indexed_names[temp_one_index], indexed_names[temp_two_index], rel[temp_rel])
+                
             else:
                 print("A greater relation is required")
         print(rel)
