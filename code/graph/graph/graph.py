@@ -227,6 +227,11 @@ if __name__ == "__main__":
     test_graph.add_edge("c", "b", 1)
     test_graph.add_edge("b", "c", 3)
 
-    test_graph.remove_edge("b", "c", 3)
+    test_graph.remove_edge("a", "b", 2)
+    test_graph.remove_edge("a", "c", 7)
+
+    test_graph.add_edge("a", "b", 3)
+    test_graph.add_edge("a", "c", 30)
 
     print(test_graph)
+    #print(test_graph.__str__())

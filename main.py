@@ -14,6 +14,7 @@ from code.utils.generate_collabs_num import generate_collabs_num
 from code.graph.generate_graph import generate_graph_data
 from code.graph.generate_graph import create_graph
 from code.graph.show_graph_cli import show_graph_console
+# Temp 
 from code.graph.show_graph_visually import show_graph_image
 
 menu_options = {
@@ -59,6 +60,7 @@ if __name__ == '__main__':
         elif opcion == 5:
             #print(str(create_graph()))
             show_graph_image()
+            #pass
 
         elif opcion == 6 or opcion == 'q':
             pprint("Saliendo del programa...")
