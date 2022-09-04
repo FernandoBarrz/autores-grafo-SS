@@ -1,5 +1,6 @@
 
 
+from operator import index
 from code.graph.graph.graph import Graph
 
 from code.utils.normalize_names import cap_names_raw
@@ -31,7 +32,6 @@ def create_graph():
     
     graph = Graph(directed=False) # Graph(directed=false) for undirected graph
     
-    
     indexed_names = cap_names_raw()
 
     
@@ -53,7 +53,7 @@ def create_graph():
                 continue
 
             elif len(registro_de_colaboracion) == 2: # When the collaboration contains only TWO autors
-
+                
                 try:
                     # En una relación de 2 autores, pueden llegar en diferente order
                     temp_one_index = indexed_names.index(registro_de_colaboracion[0])
@@ -87,7 +87,7 @@ def create_graph():
                     rel[temp_rel] = 1
                     rel[temp_rel_2] = 1
                     graph.add_edge(nombre_autor_1, nombre_autor_2, rel[temp_rel])
-                    # TODO NO Touch
+                    
 
             elif len(registro_de_colaboracion) == 3: # When the collaboration contains only Three autors
                 
@@ -116,7 +116,7 @@ def create_graph():
                 temp_rel_3_p2 = f"{nombre_autor_3} - {nombre_autor_2}"
 
                 #TODO  Relacion 1 con relacion 2  (1 con 2 y 2 con 1)donde (a -> b | b -> a)
-                if temp_rel_1_p1 in rel and temp_rel_2_p1 in rel:
+                if temp_rel_1_p1 in rel or temp_rel_2_p1 in rel:
                     try:
                         graph.remove_edge(nombre_autor_1, nombre_autor_2, rel[temp_rel_1_p1])
                     except Exception:
@@ -131,7 +131,7 @@ def create_graph():
                     graph.add_edge(nombre_autor_1, nombre_autor_2, rel[temp_rel_1_p1])
 
                 #TODO  Relacion 1 con relacion 3 (1 con 3 y 3 con 1) donde (a -> b | b -> a)
-                if temp_rel_1_p2 in rel and temp_rel_3_p1 in rel:
+                if temp_rel_1_p2 in rel or temp_rel_3_p1 in rel:
                     try:
                         graph.remove_edge(nombre_autor_1, nombre_autor_3, rel[temp_rel_1_p2])
                     except Exception:
@@ -146,7 +146,7 @@ def create_graph():
                     graph.add_edge(nombre_autor_1, nombre_autor_3, rel[temp_rel_1_p2])
 
                 #TODO  Relacion 2 con relacion 3 (2 con 3 y 3 con 2) donde (a -> b | b -> a)
-                if temp_rel_2_p2 in rel and temp_rel_3_p2 in rel:
+                if temp_rel_2_p2 in rel or temp_rel_3_p2 in rel:
                     try:
                         graph.remove_edge(nombre_autor_2, nombre_autor_3, rel[temp_rel_2_p2])
                     except Exception:
@@ -154,8 +154,149 @@ def create_graph():
                         
                         graph.remove_edge(nombre_autor_3, nombre_autor_2, rel[temp_rel_3_p2])
                         
+                    rel[temp_rel_2_p2] += 1
+                    rel[temp_rel_3_p2] += 1
+                    graph.add_edge(nombre_autor_2, nombre_autor_3, rel[temp_rel_2_p2])
+                else:
+                    rel[temp_rel_2_p2] = 1
+                    rel[temp_rel_3_p2] = 1
+                    graph.add_edge(nombre_autor_2, nombre_autor_3, rel[temp_rel_2_p2])
+   
+            # ! FIN DEL CASO PARA 3 AUTORES     
+            elif len(registro_de_colaboracion) == 4: # When the collaboration contains only Four autors
+                
+                # TODO ->  ["pedro", "Juan", "paco", "mario"]
+
+                # Autor names come in dynamic position 
+                temp_one_index = indexed_names.index(registro_de_colaboracion[0])
+                temp_two_index = indexed_names.index(registro_de_colaboracion[1])
+                temp_three_index = indexed_names.index(registro_de_colaboracion[2]) # Three author in relation
+                temp_four_index = indexed_names.index(registro_de_colaboracion[3]) # Three author in relation
+
+
+                # TODO -> ['1', '2', '3', '4'],
+                # TODO -> ['1', '2', '4', '3'], 
+                # TODO -> ['1', '3', '2', '4'], 
+                # TODO -> ['1', '3', '4', '2'], 
+                # TODO -> ['1', '4', '3', '2'], 
+                # TODO -> ['1', '4', '2', '3'], 
+
+                # TODO -> ['2', '1', '3', '4'], 
+                # TODO -> ['2', '1', '4', '3'], 
+                # TODO -> ['2', '3', '1', '4'], 
+                # TODO -> ['2', '3', '4', '1'], 
+                # TODO -> ['2', '4', '3', '1'], 
+                # TODO -> ['2', '4', '1', '3'],
+                 
+                # TODO -> ['3', '2', '1', '4'], 
+                # TODO -> ['3', '2', '4', '1'], 
+                # TODO -> ['3', '1', '2', '4'], 
+                # TODO -> ['3', '1', '4', '2'], 
+                # TODO -> ['3', '4', '1', '2'], 
+                # TODO -> ['3', '4', '2', '1'],
+                 
+                # TODO -> ['4', '2', '3', '1'], 
+                # TODO -> ['4', '2', '1', '3'], 
+                # TODO -> ['4', '3', '2', '1'], 
+                # TODO -> ['4', '3', '1', '2'], 
+                # TODO -> ['4', '1', '3', '2'],
+                # TODO -> ['4', '1', '2', '3'],
+
+
+                nombre_autor_1 = indexed_names[temp_one_index]
+                nombre_autor_2 = indexed_names[temp_two_index]
+                nombre_autor_3 = indexed_names[temp_three_index]
+                nombre_autor_4 = indexed_names[temp_four_index]
+
+                # 24 posibles combinaciones 
+                temp_rel_1_p1 = f"{nombre_autor_1} - {nombre_autor_2}"
+                temp_rel_1_p2 = f"{nombre_autor_1} - {nombre_autor_3}"
+                temp_rel_1_p3 = f"{nombre_autor_1} - {nombre_autor_4}"
+
+                temp_rel_2_p1 = f"{nombre_autor_2} - {nombre_autor_1}"
+                temp_rel_2_p2 = f"{nombre_autor_2} - {nombre_autor_3}"
+                temp_rel_2_p3 = f"{nombre_autor_2} - {nombre_autor_4}"
+
+                temp_rel_3_p1 = f"{nombre_autor_3} - {nombre_autor_1}"
+                temp_rel_3_p2 = f"{nombre_autor_3} - {nombre_autor_2}"
+                temp_rel_3_p3 = f"{nombre_autor_3} - {nombre_autor_4}"
+
+                temp_rel_4_p1 = f"{nombre_autor_4} - {nombre_autor_1}"
+                temp_rel_4_p2 = f"{nombre_autor_4} - {nombre_autor_2}"
+                temp_rel_4_p3 = f"{nombre_autor_4} - {nombre_autor_3}"
+                
+                #TODO: INICIO COLABS PARA ( 1 )
+
+                #TODO  Relacion 1 con relacion 2  (1 con 2 y 2 con 1) donde (a -> b | b -> a)
+                if temp_rel_1_p1 in rel or temp_rel_2_p1 in rel:
+                    try:
+                        graph.remove_edge(nombre_autor_1, nombre_autor_2, rel[temp_rel_1_p1])
+                    except Exception:
+                        try:
+                            graph.remove_edge(nombre_autor_2, nombre_autor_1, rel[temp_rel_2_p1])
+                            
+                        except Exception:
+                            pass
                         
+                    rel[temp_rel_1_p1] += 1
+                    rel[temp_rel_2_p1] += 1
+                    graph.add_edge(nombre_autor_1, nombre_autor_2, rel[temp_rel_1_p1])
+                else:
+                    rel[temp_rel_1_p1] = 1
+                    rel[temp_rel_2_p1] = 1
+                    graph.add_edge(nombre_autor_1, nombre_autor_2, rel[temp_rel_1_p1])
+
+                #TODO  Relacion 1 con relacion 3 (1 con 3 y 3 con 1) donde (a -> b | b -> a)
+                if temp_rel_1_p2 in rel or temp_rel_3_p1 in rel:
+                    try:
+                        graph.remove_edge(nombre_autor_1, nombre_autor_3, rel[temp_rel_1_p2])
+                    except Exception:
+                        try:
+                            graph.remove_edge(nombre_autor_3, nombre_autor_1, rel[temp_rel_3_p1])
+                        except Exception as e:
+                            pass
                     
+                    rel[temp_rel_1_p2] += 1
+                    rel[temp_rel_3_p1] += 1
+                    graph.add_edge(nombre_autor_1, nombre_autor_3, rel[temp_rel_1_p2])
+                else:
+                    rel[temp_rel_1_p2] = 1
+                    rel[temp_rel_3_p1] = 1
+                    graph.add_edge(nombre_autor_1, nombre_autor_3, rel[temp_rel_1_p2])
+
+                #TODO  Relacion 1 con relacion 4 (1 con 4 y 4 con 1) donde (a -> b | b -> a)
+                if temp_rel_1_p3 in rel or temp_rel_4_p1 in rel:
+                    try:
+                        graph.remove_edge(nombre_autor_1, nombre_autor_4, rel[temp_rel_1_p3])
+                    except Exception:
+                        try:
+                            graph.remove_edge(nombre_autor_4, nombre_autor_1, rel[temp_rel_4_p1])
+                        except Exception as e:
+                            pass
+                    
+                    rel[temp_rel_1_p3] += 1
+                    rel[temp_rel_4_p1] += 1
+                    graph.add_edge(nombre_autor_1, nombre_autor_4, rel[temp_rel_1_p3])
+                else:
+                    rel[temp_rel_1_p3] = 1
+                    rel[temp_rel_4_p1] = 1
+                    graph.add_edge(nombre_autor_1, nombre_autor_4, rel[temp_rel_1_p3])
+
+                #TODO: FIN COLABS PARA ( 1 )
+
+                #TODO: INICIO COLABS PARA ( 2 )
+
+                #TODO  Relacion 2 con relacion 3 (2 con 3 y 3 con 2) donde (a -> b | b -> a)
+                if temp_rel_2_p2 in rel or temp_rel_3_p2 in rel:
+                    try:
+                        graph.remove_edge(nombre_autor_2, nombre_autor_3, rel[temp_rel_2_p2])
+                    except Exception:
+                        # TODO Here is the problemo
+                        try:
+                            graph.remove_edge(nombre_autor_3, nombre_autor_2, rel[temp_rel_3_p2])
+                        except Exception as e:
+                            pass
+                        
                     rel[temp_rel_2_p2] += 1
                     rel[temp_rel_3_p2] += 1
                     graph.add_edge(nombre_autor_2, nombre_autor_3, rel[temp_rel_2_p2])
@@ -164,80 +305,429 @@ def create_graph():
                     rel[temp_rel_3_p2] = 1
                     graph.add_edge(nombre_autor_2, nombre_autor_3, rel[temp_rel_2_p2])
 
-
+                #TODO  Relacion 2 con relacion 4 (2 con 4 y 4 con 2) donde (a -> b | b -> a)
+                if temp_rel_2_p3 in rel or temp_rel_4_p2 in rel:
+                    try:
+                        graph.remove_edge(nombre_autor_2, nombre_autor_4, rel[temp_rel_2_p3])
+                    except Exception:
+                        # TODO Here is the problemo
+                        try:
+                            graph.remove_edge(nombre_autor_4, nombre_autor_2, rel[temp_rel_4_p2])
+                        except Exception:
+                            pass
+                        
+                    rel[temp_rel_2_p3] += 1
+                    rel[temp_rel_4_p2] += 1
+                    graph.add_edge(nombre_autor_2, nombre_autor_4, rel[temp_rel_2_p3])
+                else:
+                    rel[temp_rel_2_p3] = 1
+                    rel[temp_rel_4_p2] = 1
+                    graph.add_edge(nombre_autor_2, nombre_autor_4, rel[temp_rel_2_p3])
                 
+                #TODO: FIN COLABS PARA ( 2 )
 
-                # temp_rel = f"{nombre_autor_1} - {nombre_autor_2} - {nombre_autor_3}"
-                # temp_rel_2 = f"{nombre_autor_1} - {nombre_autor_3} - {nombre_autor_2}"
+                #TODO: INICIO COLABS PARA ( 3 )
 
-                # temp_rel_3 = f"{nombre_autor_2} - {nombre_autor_1} - {nombre_autor_3}"
-                # temp_rel_4 = f"{nombre_autor_2} - {nombre_autor_3} - {nombre_autor_1}"
+                #TODO  Relacion 3 con relacion 4 (3 con 4 y 4 con 3) donde (a -> b | b -> a)
+                if temp_rel_3_p3 in rel or temp_rel_4_p3 in rel:
+                    try:
+                        graph.remove_edge(nombre_autor_3, nombre_autor_4, rel[temp_rel_3_p3])
+                    except Exception:
+                        # TODO Here is the problemo
+                        try:
+                            graph.remove_edge(nombre_autor_4, nombre_autor_3, rel[temp_rel_4_p3])
+                        except Exception as e:
+                            pass
+                        
+                    rel[temp_rel_3_p3] += 1
+                    rel[temp_rel_4_p3] += 1
+                    graph.add_edge(nombre_autor_3, nombre_autor_4, rel[temp_rel_3_p3])
+                else:
+                    rel[temp_rel_3_p3] = 1
+                    rel[temp_rel_4_p3] = 1
+                    graph.add_edge(nombre_autor_3, nombre_autor_4, rel[temp_rel_3_p3])
 
-                # temp_rel_5 = f"{nombre_autor_3} - {nombre_autor_1} - {nombre_autor_2}"
-                # temp_rel_6 = f"{nombre_autor_3} - {nombre_autor_2} - {nombre_autor_1}"
+                #TODO: FIN COLABS PARA ( 3 )
+
+            # ! FIn del caso para 4 autores
+
+            elif len(registro_de_colaboracion) == 5: # When the collaboration contains only Five autors
                 
-                # if  temp_rel in rel or temp_rel_2 in rel or temp_rel_3 in rel or temp_rel_4 in rel or temp_rel_5 in rel or temp_rel_6 in rel:
+                # TODO ->  ["pedro", "Juan", "paco", "Loui", "Susie"]
+
+                # Autor names come in dynamic position 
+                temp_one_index = indexed_names.index(registro_de_colaboracion[0])
+                temp_two_index = indexed_names.index(registro_de_colaboracion[1])
+                temp_three_index = indexed_names.index(registro_de_colaboracion[2]) 
+                temp_four_index = indexed_names.index(registro_de_colaboracion[3])
+                temp_five_index = indexed_names.index(registro_de_colaboracion[4]) 
+
+                # ? Combinaciones posibles
+                # * ['1', '2', '3', '4', '5'], 
+                # * ['1', '2', '3', '5', '4'], 
+                # * ['1', '2', '4', '3', '5'], 
+                # * ['1', '2', '4', '5', '3'], 
+                # * ['1', '2', '5', '4', '3'], 
+                # * ['1', '2', '5', '3', '4'], 
+                # * ['1', '3', '2', '4', '5'], 
+                # * ['1', '3', '2', '5', '4'], 
+                # * ['1', '3', '4', '2', '5'], 
+                # * ['1', '3', '4', '5', '2'], 
+                # * ['1', '3', '5', '4', '2'], 
+                # * ['1', '3', '5', '2', '4'], 
+                # * ['1', '4', '3', '2', '5'], 
+                # * ['1', '4', '3', '5', '2'], 
+                # * ['1', '4', '2', '3', '5'], 
+                # * ['1', '4', '2', '5', '3'], 
+                # * ['1', '4', '5', '2', '3'], 
+                # * ['1', '4', '5', '3', '2'], 
+                # * ['1', '5', '3', '4', '2'], 
+                # * ['1', '5', '3', '2', '4'], 
+                # * ['1', '5', '4', '3', '2'], 
+                # * ['1', '5', '4', '2', '3'], 
+                # * ['1', '5', '2', '4', '3'], 
+                # * ['1', '5', '2', '3', '4'], 
+
+                # * ['2', '1', '3', '4', '5'],
+                # * ['2', '1', '3', '5', '4'], 
+                # * ['2', '1', '4', '3', '5'], 
+                # * ['2', '1', '4', '5', '3'], 
+                # * ['2', '1', '5', '4', '3'], 
+                # * ['2', '1', '5', '3', '4'],
+                # * ['2', '3', '1', '4', '5'],
+                # * ['2', '3', '1', '5', '4'], 
+                # * ['2', '3', '4', '1', '5'], 
+                # * ['2', '3', '4', '5', '1'], 
+                # * ['2', '3', '5', '4', '1'],
+                # * ['2', '3', '5', '1', '4'],
+                # * ['2', '4', '3', '1', '5'], 
+                # * ['2', '4', '3', '5', '1'],
+                # * ['2', '4', '1', '3', '5'],
+                # * ['2', '4', '1', '5', '3'], 
+                # * ['2', '4', '5', '1', '3'], 
+                # * ['2', '4', '5', '3', '1'], 
+                # * ['2', '5', '3', '4', '1'], 
+                # * ['2', '5', '3', '1', '4'], 
+                # * ['2', '5', '4', '3', '1'], 
+                # * ['2', '5', '4', '1', '3'], 
+                # * ['2', '5', '1', '4', '3'], 
+                # * ['2', '5', '1', '3', '4'],
+
+                # * ['3', '2', '1', '4', '5'],
+                # * ['3', '2', '1', '5', '4'], 
+                # * ['3', '2', '4', '1', '5'], 
+                # * ['3', '2', '4', '5', '1'], 
+                # * ['3', '2', '5', '4', '1'], 
+                # * ['3', '2', '5', '1', '4'], 
+                # * ['3', '1', '2', '4', '5'], 
+                # * ['3', '1', '2', '5', '4'], 
+                # * ['3', '1', '4', '2', '5'],
+                # * ['3', '1', '4', '5', '2'], 
+                # * ['3', '1', '5', '4', '2'], 
+                # * ['3', '1', '5', '2', '4'], 
+                # * ['3', '4', '1', '2', '5'], 
+                # * ['3', '4', '1', '5', '2'], 
+                # * ['3', '4', '2', '1', '5'], 
+                # * ['3', '4', '2', '5', '1'], 
+                # * ['3', '4', '5', '2', '1'], 
+                # * ['3', '4', '5', '1', '2'], 
+                # * ['3', '5', '1', '4', '2'],
+                # * ['3', '5', '1', '2', '4'], 
+                # * ['3', '5', '4', '1', '2'], 
+                # * ['3', '5', '4', '2', '1'], 
+                # * ['3', '5', '2', '4', '1'],
+                # * ['3', '5', '2', '1', '4'], 
+
+                # * ['4', '2', '3', '1', '5'], 
+                # * ['4', '2', '3', '5', '1'],
+                # * ['4', '2', '1', '3', '5'], 
+                # * ['4', '2', '1', '5', '3'],
+                # * ['4', '2', '5', '1', '3'], 
+                # * ['4', '2', '5', '3', '1'], 
+                # * ['4', '3', '2', '1', '5'],
+                # * ['4', '3', '2', '5', '1'], 
+                # * ['4', '3', '1', '2', '5'], 
+                # * ['4', '3', '1', '5', '2'],
+                # * ['4', '3', '5', '1', '2'], 
+                # * ['4', '3', '5', '2', '1'],
+                # * ['4', '1', '3', '2', '5'], 
+                # * ['4', '1', '3', '5', '2'], 
+                # * ['4', '1', '2', '3', '5'],
+                # * ['4', '1', '2', '5', '3'], 
+                # * ['4', '1', '5', '2', '3'], 
+                # * ['4', '1', '5', '3', '2'], 
+                # * ['4', '5', '3', '1', '2'], 
+                # * ['4', '5', '3', '2', '1'], 
+                # * ['4', '5', '1', '3', '2'], 
+                # * ['4', '5', '1', '2', '3'],
+                # * ['4', '5', '2', '1', '3'], 
+                # * ['4', '5', '2', '3', '1'], 
+
+                # * ['5', '2', '3', '4', '1'], 
+                # * ['5', '2', '3', '1', '4'], 
+                # * ['5', '2', '4', '3', '1'], 
+                # * ['5', '2', '4', '1', '3'],
+                # * ['5', '2', '1', '4', '3'], 
+                # * ['5', '2', '1', '3', '4'], 
+                # * ['5', '3', '2', '4', '1'],
+                # * ['5', '3', '2', '1', '4'], 
+                # * ['5', '3', '4', '2', '1'], 
+                # * ['5', '3', '4', '1', '2'], 
+                # * ['5', '3', '1', '4', '2'], 
+                # * ['5', '3', '1', '2', '4'], 
+                # * ['5', '4', '3', '2', '1'], 
+                # * ['5', '4', '3', '1', '2'], 
+                # * ['5', '4', '2', '3', '1'], 
+                # * ['5', '4', '2', '1', '3'],
+                # * ['5', '4', '1', '2', '3'],
+                # * ['5', '4', '1', '3', '2'], 
+                # * ['5', '1', '3', '4', '2'],
+                # * ['5', '1', '3', '2', '4'],
+                # * ['5', '1', '4', '3', '2'],
+                # * ['5', '1', '4', '2', '3'],
+                # * ['5', '1', '2', '4', '3'],
+                # * ['5', '1', '2', '3', '4']
+
+
+                nombre_autor_1 = indexed_names[temp_one_index]
+                nombre_autor_2 = indexed_names[temp_two_index]
+                nombre_autor_3 = indexed_names[temp_three_index]
+                nombre_autor_4 = indexed_names[temp_four_index]
+                nombre_autor_5 = indexed_names[temp_five_index]
+
+                # 120 posibles combinaciones 
+                temp_rel_1_p1 = f"{nombre_autor_1} - {nombre_autor_2}"
+                temp_rel_1_p2 = f"{nombre_autor_1} - {nombre_autor_3}"
+                temp_rel_1_p3 = f"{nombre_autor_1} - {nombre_autor_4}"
+                temp_rel_1_p4 = f"{nombre_autor_1} - {nombre_autor_5}"
+
+                temp_rel_2_p1 = f"{nombre_autor_2} - {nombre_autor_1}"
+                temp_rel_2_p2 = f"{nombre_autor_2} - {nombre_autor_3}"
+                temp_rel_2_p3 = f"{nombre_autor_2} - {nombre_autor_4}"
+                temp_rel_2_p4 = f"{nombre_autor_2} - {nombre_autor_5}"
+
+                temp_rel_3_p1 = f"{nombre_autor_3} - {nombre_autor_1}"
+                temp_rel_3_p2 = f"{nombre_autor_3} - {nombre_autor_2}"
+                temp_rel_3_p3 = f"{nombre_autor_3} - {nombre_autor_4}"
+                temp_rel_3_p4 = f"{nombre_autor_3} - {nombre_autor_5}"
+
+                temp_rel_4_p1 = f"{nombre_autor_4} - {nombre_autor_1}"
+                temp_rel_4_p2 = f"{nombre_autor_4} - {nombre_autor_2}"
+                temp_rel_4_p3 = f"{nombre_autor_4} - {nombre_autor_3}"
+                temp_rel_4_p4 = f"{nombre_autor_4} - {nombre_autor_5}"
+
+                temp_rel_5_p1 = f"{nombre_autor_5} - {nombre_autor_1}"
+                temp_rel_5_p2 = f"{nombre_autor_5} - {nombre_autor_2}"
+                temp_rel_5_p3 = f"{nombre_autor_5} - {nombre_autor_3}"
+                temp_rel_5_p4 = f"{nombre_autor_5} - {nombre_autor_4}"
+                
+                # * INICIO COLABS PARA ( 1 )
+
+                #TODO  Relacion 1 con relacion 2  (1 con 2 y 2 con 1) donde (a -> b | b -> a)
+                if temp_rel_1_p1 in rel or temp_rel_2_p1 in rel:
+                    try:
+                        graph.remove_edge(nombre_autor_1, nombre_autor_2, rel[temp_rel_1_p1])
+                    except Exception:
+                        try:
+                            graph.remove_edge(nombre_autor_2, nombre_autor_1, rel[temp_rel_2_p1])
+                            
+                        except Exception:
+                            pass
+                        
+                    rel[temp_rel_1_p1] += 1
+                    rel[temp_rel_2_p1] += 1
+                    graph.add_edge(nombre_autor_1, nombre_autor_2, rel[temp_rel_1_p1])
+                else:
+                    rel[temp_rel_1_p1] = 1
+                    rel[temp_rel_2_p1] = 1
+                    graph.add_edge(nombre_autor_1, nombre_autor_2, rel[temp_rel_1_p1])
+
+                #TODO  Relacion 1 con relacion 3 (1 con 3 y 3 con 1) donde (a -> b | b -> a)
+                if temp_rel_1_p2 in rel or temp_rel_3_p1 in rel:
+                    try:
+                        graph.remove_edge(nombre_autor_1, nombre_autor_3, rel[temp_rel_1_p2])
+                    except Exception:
+                        try:
+                            graph.remove_edge(nombre_autor_3, nombre_autor_1, rel[temp_rel_3_p1])
+                        except Exception as e:
+                            pass
                     
-                #     # Remueve el edge con los datos actualez y despues lo vuelve a crear
-                #     try:
-                #         graph.remove_edge(nombre_autor_1, nombre_autor_2, rel[temp_rel])
-                #     except Exception:
-                #         # TODO: correguir revisar si se modifico algo a las relaciones con 2 autores: rel[temp_rel_2]
-                #         try:
-                #             graph.remove_edge(nombre_autor_2, nombre_autor_1, rel[temp_rel_2])
-                #         except Exception:
-                #             graph.remove_edge(nombre_autor_2, nombre_autor_1, rel[temp_rel_2])
-                #     rel[temp_rel] += 1
-                #     graph.add_edge(nombre_autor_1, nombre_autor_2, rel[temp_rel])
-                
-                # else:
-                #     # Actualmente, solo genera una relacion unidireccional de maximo 1, en ocaciones deben de ser 2 o más
+                    rel[temp_rel_1_p2] += 1
+                    rel[temp_rel_3_p1] += 1
+                    graph.add_edge(nombre_autor_1, nombre_autor_3, rel[temp_rel_1_p2])
+                else:
+                    rel[temp_rel_1_p2] = 1
+                    rel[temp_rel_3_p1] = 1
+                    graph.add_edge(nombre_autor_1, nombre_autor_3, rel[temp_rel_1_p2])
+
+                #TODO  Relacion 1 con relacion 4 (1 con 4 y 4 con 1) donde (a -> b | b -> a)
+                if temp_rel_1_p3 in rel or temp_rel_4_p1 in rel:
+                    try:
+                        graph.remove_edge(nombre_autor_1, nombre_autor_4, rel[temp_rel_1_p3])
+                    except Exception:
+                        try:
+                            graph.remove_edge(nombre_autor_4, nombre_autor_1, rel[temp_rel_4_p1])
+                        except Exception as e:
+                            pass
                     
-                #     # TODO: Agregar la forma en la que se agregan y se borran las colaboraciones
-                #     # Les da un valor a manera de señal de que ahora esta registrado (Flag)
-                #     rel[temp_rel] = 1
-                #     rel[temp_rel_2] = 1
-                #     rel[temp_rel_3] = 1
-                #     rel[temp_rel_4] = 1
-                #     rel[temp_rel_5] = 1
-                #     rel[temp_rel_6] = 1
+                    rel[temp_rel_1_p3] += 1
+                    rel[temp_rel_4_p1] += 1
+                    graph.add_edge(nombre_autor_1, nombre_autor_4, rel[temp_rel_1_p3])
+                else:
+                    rel[temp_rel_1_p3] = 1
+                    rel[temp_rel_4_p1] = 1
+                    graph.add_edge(nombre_autor_1, nombre_autor_4, rel[temp_rel_1_p3])
+
+                #TODO  Relacion 1 con relacion 5 (1 con 5 y 5 con 1) donde (a -> b | b -> a)
+                if temp_rel_1_p4 in rel or temp_rel_5_p1 in rel:
+                    try:
+                        graph.remove_edge(nombre_autor_1, nombre_autor_5, rel[temp_rel_1_p4])
+                    except Exception:
+                        try:
+                            graph.remove_edge(nombre_autor_5, nombre_autor_1, rel[temp_rel_5_p1])
+                        except Exception as e:
+                            pass
                     
-                #     graph.add_edge(nombre_autor_1, nombre_autor_2, rel[temp_rel])
-                #     graph.add_edge(nombre_autor_1, nombre_autor_3, rel[temp_rel])
+                    rel[temp_rel_1_p4] += 1
+                    rel[temp_rel_5_p1] += 1
+                    graph.add_edge(nombre_autor_1, nombre_autor_5, rel[temp_rel_1_p4])
+                else:
+                    rel[temp_rel_1_p4] = 1
+                    rel[temp_rel_5_p1] = 1
+                    graph.add_edge(nombre_autor_1, nombre_autor_5, rel[temp_rel_1_p4])
+
+                # * : FIN COLABS PARA ( 1 )
+
+                # * : INICIO COLABS PARA ( 2 )
+
+                #TODO  Relacion 2 con relacion 3 (2 con 3 y 3 con 2) donde (a -> b | b -> a)
+                if temp_rel_2_p2 in rel or temp_rel_3_p2 in rel:
+                    try:
+                        graph.remove_edge(nombre_autor_2, nombre_autor_3, rel[temp_rel_2_p2])
+                    except Exception:
+                        # TODO Here is the problemo
+                        try:
+                            graph.remove_edge(nombre_autor_3, nombre_autor_2, rel[temp_rel_3_p2])
+                        except Exception as e:
+                            pass
+                        
+                    rel[temp_rel_2_p2] += 1
+                    rel[temp_rel_3_p2] += 1
+                    graph.add_edge(nombre_autor_2, nombre_autor_3, rel[temp_rel_2_p2])
+                else:
+                    rel[temp_rel_2_p2] = 1
+                    rel[temp_rel_3_p2] = 1
+                    graph.add_edge(nombre_autor_2, nombre_autor_3, rel[temp_rel_2_p2])
+
+                #TODO  Relacion 2 con relacion 4 (2 con 4 y 4 con 2) donde (a -> b | b -> a)
+                if temp_rel_2_p3 in rel or temp_rel_4_p2 in rel:
+                    try:
+                        graph.remove_edge(nombre_autor_2, nombre_autor_4, rel[temp_rel_2_p3])
+                    except Exception:
+                        # TODO Here is the problemo
+                        try:
+                            graph.remove_edge(nombre_autor_4, nombre_autor_2, rel[temp_rel_4_p2])
+                        except Exception:
+                            pass
+                        
+                    rel[temp_rel_2_p3] += 1
+                    rel[temp_rel_4_p2] += 1
+                    graph.add_edge(nombre_autor_2, nombre_autor_4, rel[temp_rel_2_p3])
+                else:
+                    rel[temp_rel_2_p3] = 1
+                    rel[temp_rel_4_p2] = 1
+                    graph.add_edge(nombre_autor_2, nombre_autor_4, rel[temp_rel_2_p3])
+
+                #TODO  Relacion 2 con relacion 5 (2 con 5 y 5 con 2) donde (a -> b | b -> a)
+                if temp_rel_2_p4 in rel or temp_rel_5_p2 in rel:
+                    try:
+                        graph.remove_edge(nombre_autor_2, nombre_autor_5, rel[temp_rel_2_p4])
+                    except Exception:
+                        # TODO Here is the problemo
+                        try:
+                            graph.remove_edge(nombre_autor_5, nombre_autor_2, rel[temp_rel_5_p2])
+                        except Exception:
+                            pass
+                        
+                    rel[temp_rel_2_p4] += 1
+                    rel[temp_rel_5_p2] += 1
+                    graph.add_edge(nombre_autor_2, nombre_autor_5, rel[temp_rel_2_p4])
+                else:
+                    rel[temp_rel_2_p4] = 1
+                    rel[temp_rel_5_p2] = 1
+                    graph.add_edge(nombre_autor_2, nombre_autor_5, rel[temp_rel_2_p4])
                 
+                # * : FIN COLABS PARA ( 2 )
+
+                # * : INICIO COLABS PARA ( 3 )
+
+                #TODO  Relacion 3 con relacion 4 (3 con 4 y 4 con 3) donde (a -> b | b -> a)
+                if temp_rel_3_p3 in rel or temp_rel_4_p3 in rel:
+                    try:
+                        graph.remove_edge(nombre_autor_3, nombre_autor_4, rel[temp_rel_3_p3])
+                    except Exception:
+                        # TODO Here is the problemo
+                        try:
+                            graph.remove_edge(nombre_autor_4, nombre_autor_3, rel[temp_rel_4_p3])
+                        except Exception as e:
+                            pass
+                        
+                    rel[temp_rel_3_p3] += 1
+                    rel[temp_rel_4_p3] += 1
+                    graph.add_edge(nombre_autor_3, nombre_autor_4, rel[temp_rel_3_p3])
+                else:
+                    rel[temp_rel_3_p3] = 1
+                    rel[temp_rel_4_p3] = 1
+                    graph.add_edge(nombre_autor_3, nombre_autor_4, rel[temp_rel_3_p3])
+
+                #TODO  Relacion 3 con relacion 5 (3 con 5 y 5 con 3) donde (a -> b | b -> a)
+                if temp_rel_3_p4 in rel or temp_rel_5_p3 in rel:
+                    try:
+                        graph.remove_edge(nombre_autor_3, nombre_autor_5, rel[temp_rel_3_p4])
+                    except Exception:
+                        # TODO Here is the problemo
+                        try:
+                            graph.remove_edge(nombre_autor_5, nombre_autor_3, rel[temp_rel_5_p3])
+                        except Exception as e:
+                            pass
+                        
+                    rel[temp_rel_3_p4] += 1
+                    rel[temp_rel_5_p3] += 1
+                    graph.add_edge(nombre_autor_3, nombre_autor_5, rel[temp_rel_3_p4])
+                else:
+                    rel[temp_rel_3_p4] = 1
+                    rel[temp_rel_5_p3] = 1
+                    graph.add_edge(nombre_autor_3, nombre_autor_5, rel[temp_rel_3_p4])
+
+                # * : FIN COLABS PARA ( 3 )
+
+                # * : INICIO COLABS PARA ( 4 )
+
+                #TODO  Relacion 4 con relacion 5 (4 con 5 y 5 con 4) donde (a -> b | b -> a)
+                if temp_rel_4_p4 in rel or temp_rel_5_p4 in rel:
+                    try:
+                        graph.remove_edge(nombre_autor_4, nombre_autor_5, rel[temp_rel_4_p4])
+                    except Exception:
+                        # TODO Here is the problemo
+                        try:
+                            graph.remove_edge(nombre_autor_5, nombre_autor_4, rel[temp_rel_5_p4])
+                        except Exception as e:
+                            pass
+                        
+                    rel[temp_rel_4_p4] += 1
+                    rel[temp_rel_5_p4] += 1
+                    graph.add_edge(nombre_autor_4, nombre_autor_5, rel[temp_rel_4_p4])
+                else:
+                    rel[temp_rel_4_p4] = 1
+                    rel[temp_rel_5_p4] = 1
+                    graph.add_edge(nombre_autor_4, nombre_autor_5, rel[temp_rel_4_p4])
+
+                # ! FIN caso 5 autores
             
-                
-                """
-                ['1 - 2 - 3 - 4',
-                 '1 - 2 - 4 - 3',
-                 '1 - 3 - 2 - 4',
-                 '1 - 3 - 4 - 2',
-                 '1 - 4 - 2 - 3',
-                 '1 - 4 - 3 - 2',
-                 '2 - 1 - 3 - 4',
-                 '2 - 1 - 4 - 3',
-                 '2 - 3 - 1 - 4',
-                 '2 - 3 - 4 - 1',
-                 '2 - 4 - 1 - 3',
-                 '2 - 4 - 3 - 1',
-                 '3 - 1 - 2 - 4',
-                 '3 - 1 - 4 - 2',
-                 '3 - 2 - 1 - 4',
-                 '3 - 2 - 4 - 1',
-                 '3 - 4 - 1 - 2',
-                 '3 - 4 - 2 - 1',
-                 '4 - 1 - 2 - 3',
-                 '4 - 1 - 3 - 2',
-                 '4 - 2 - 1 - 3',
-                 '4 - 2 - 3 - 1',
-                 '4 - 3 - 1 - 2',
-                 '4 - 3 - 2 - 1']
-                """
+
             else:
+                print(registro_de_colaboracion)
                 
-                pass
-        
-        
 
         return graph
     return make_graph()

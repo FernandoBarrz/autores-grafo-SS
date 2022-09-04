@@ -80,3 +80,36 @@ Licenciatura en Informática
 Facultad de Contaduría y Administración
 Universidad Nacional Autónoma de México
 ```
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+temp_rel_1_p1 = f"{nombre_autor_1} - {nombre_autor_2}"
+temp_rel_1_p2 = f"{nombre_autor_1} - {nombre_autor_3}"
+temp_rel_1_p3 = f"{nombre_autor_1} - {nombre_autor_4}"
+
+temp_rel_2_p1 = f"{nombre_autor_2} - {nombre_autor_1}"
+temp_rel_2_p2 = f"{nombre_autor_2} - {nombre_autor_3}"
+temp_rel_2_p3 = f"{nombre_autor_2} - {nombre_autor_4}"
+
+temp_rel_3_p1 = f"{nombre_autor_3} - {nombre_autor_1}"
+temp_rel_3_p2 = f"{nombre_autor_3} - {nombre_autor_2}"
+temp_rel_3_p3 = f"{nombre_autor_3} - {nombre_autor_4}"
+
+temp_rel_4_p1 = f"{nombre_autor_4} - {nombre_autor_1}"
+temp_rel_4_p2 = f"{nombre_autor_4} - {nombre_autor_2}"
+temp_rel_4_p3 = f"{nombre_autor_4} - {nombre_autor_3}"
+
+
+
+
