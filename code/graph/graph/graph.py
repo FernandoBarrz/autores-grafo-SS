@@ -57,7 +57,7 @@ class Vertex:
         for edge in self.get_inbound_edges():
             inbound_edges_str += str(edge) + ", "
 
-        return "Vertex : {0}, Outbound edges : {1}, Inbound edges : {2}".format(self.__label,
+        return "\n\n\nVÉRTICE (nombre): {0}, \nVértices adyacentes (de SALIDA):\n\t {1}\n\t \nVértices adyacentes (de ENTRADA):\n\t {2}\n\t".format(self.__label,
                                                                                 outbound_edges_str, inbound_edges_str)
 
     def get_outbound_edges(self):

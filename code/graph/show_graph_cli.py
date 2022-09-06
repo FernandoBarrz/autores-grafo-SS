@@ -8,7 +8,7 @@ def show_graph_console():
     Muestra el grafo en su representación como texto
     """
     #create_graph()
-    pprint(str(create_graph()))
+    print(create_graph())
 
 if __name__ == '__main__':
     show_graph_console()
