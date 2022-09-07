@@ -726,7 +726,7 @@ def create_graph():
             
 
             else:
-                print(registro_de_colaboracion)
+                pass
                 
 
         return graph
