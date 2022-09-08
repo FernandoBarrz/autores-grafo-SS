@@ -4,6 +4,9 @@ from code.graph.graph.graph import Graph
 # from code.graph.graph.graph import Vertex
 # from code.graph.graph.graph import Graph
 
+
+
+
 # * {k: v for k, v in sorted(x.items(), key=lambda item: item[1])}
 
 temp_graph = create_graph()
@@ -21,9 +24,10 @@ def get_vertex_weight(author_name):
     return total_weight
         
 def sort_nodes_by_num_of_collabs():
+    path_nombres_investigadores = "./nombre-investigadores.txt"
     author_x_num_collabs = {}
 
-    with open("./input/nombre-investigadores.txt") as aut_names:
+    with open(path_nombres_investigadores) as aut_names:
         for line in aut_names.readlines():
             author_name = str(line).strip()
             author_x_num_collabs[author_name] = get_vertex_weight(author_name)

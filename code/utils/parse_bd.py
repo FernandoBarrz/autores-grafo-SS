@@ -7,6 +7,11 @@
 
 from pprint import pprint
 
+import glob
+
+
+
+
 
 def parse_txt_to_lists():
     ''' Genera una lista de listas usando la información del archivo .txt de la BD
@@ -22,8 +27,11 @@ def parse_txt_to_lists():
         Lista compuesta por listas de públicaciones
 
     '''
+
+    PATH_TO_DATABASE = glob.glob("./input/*.txt")
+
     try:
-        with open('./input/PubMed_Biomedicas_desde_2014.txt', 'r') as publicaciones_bd:
+        with open(PATH_TO_DATABASE[0], 'r') as publicaciones_bd:
             raw_publicaciones_bd = list(publicaciones_bd.readlines())
             bulk_pub_conbo = []
             temp_pub_single = []
@@ -36,7 +44,7 @@ def parse_txt_to_lists():
             return bulk_pub_conbo
     except:
         print("Error while reading file: charmap errror")
-        return "Error - open /input/PubMed_Biomedicas"
+        return "Error - open /input/<*PubMed_Biomedicas*>"
 
 
 if __name__ == '__main__':

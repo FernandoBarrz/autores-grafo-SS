@@ -45,7 +45,7 @@ def cap_names_raw():
     """
     Lee el archivo .txt de nombres de autores y retorna una lista sin carácteres especiales
     """
-    with open('./input/nombre-investigadores.txt', 'r') as nombres_inv:
+    with open('./nombre-investigadores.txt', 'r') as nombres_inv:
         lista_nombres_raw = list(nombres_inv.readlines())
         lista_nombres_capitalized = []
         for nombre in lista_nombres_raw:
